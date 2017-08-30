@@ -1,0 +1,21 @@
+<!--pages/components/city_picker/city_picker.wxml-->
+<view class="selectedCity">
+    <text class="province">省／市／区：</text>
+    <input placeholder="请选择" bindtap="showProvince" data-status="1" disabled value="{{resigon}}"/>
+</view>
+<view class="province_bg" wx:if="{{showModalStatus}}" bindtap="showProvince" data-status="0"></view>
+<view animation="{{animationData}}" class="province_list" wx:if="{{showModalStatus}}">
+    <view class="province_title">省 / 市 / 区</view>
+    <view class="close_icon" bindtap="showProvince" data-status="0">×</view>
+    <view class="province_box">
+        <scroll-view class="province_name_list name_box" scroll-y="true" scroll-top="{{provinceTop}}">
+            <view class="content {{item.label==selectedPro?'selectCol':''}}" wx:for="{{provinceList}}" data-index="{{index}}" bindtap="selectedProvince">{{item.label}}</view>
+        </scroll-view>
+        <scroll-view class="city_name_list name_box" scroll-y="true" scroll-top="{{cityTop}}" wx:if="{{showCity}}">
+            <view class="content {{item.label==selectedCity?'selectCol':''}}" wx:for="{{cityList}}" data-index="{{index}}" bindtap="selectedCity">{{item.label}}</view>
+        </scroll-view>
+        <scroll-view class="area_name_list name_box" scroll-y="true" wx:if="{{showArea}}">
+            <view class="content" wx:for="{{areaList}}" data-index="{{index}}" bindtap="selectedArea">{{item.label}}</view>
+        </scroll-view>
+    </view>
+</view>
